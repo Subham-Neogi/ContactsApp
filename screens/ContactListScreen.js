@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Button } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/AntDesign';
 
 import SectionListContacts from '../ContactsList'
 
@@ -8,8 +9,14 @@ export default class ContactListScreen extends React.Component{
     static navigationOptions = ({navigation}) => ({
         headerTitle: 'Contacts',
         headerRight: <Button 
-        type="outline"
-        title="Add Contact" 
+        type=""
+        icon={
+            <Icon
+            name="pluscircleo"
+            size={30}
+            color='#268bd4'
+            />
+        }
         onPress={()=>navigation.navigate('AddContact')}
         />
         })
