@@ -48,6 +48,7 @@ export default class ContactListScreen extends React.Component{
 const styles = StyleSheet.create({
     container: {
         fontSize:32,
+        paddingBottom: 82,
     },
     button: 
     {   

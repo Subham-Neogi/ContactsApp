@@ -1,10 +1,13 @@
-
+//React
 import React, { Component } from 'react';
-
+//React Navigation
 import contacts,{compareNames} from './contacts';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+//Icons
+import Ionicons from "react-native-vector-icons/Ionicons"
+//Screens
 import AddContactScreen from './screens/AddContactScreen';
 import ContactListScreen from './screens/ContactListScreen';
 import ContactDetailsScreen from './screens/ContactDetailsScreen';
@@ -26,10 +29,48 @@ const ContactsTab = createStackNavigator({
     initialRouteName: 'ContactList'
 })
 
+/*
+ContactsTab.navigationOptions = {
+    tabBarIcons: (focused,tintColor) => (
+        <Ionicons
+        name={`ios-contacts${focused?'':'-outline'}`}
+        size={25}
+        color={tintColor}
+        />
+    )
+}*/
 
 const MainNavigator = createBottomTabNavigator({
-    Contacts: ContactsTab,
-    Settings: SettingsScreen
+    Contacts: {
+        screen: ContactsTab,
+        navigationOptions: {
+            tabBarLabel: "Contacts",
+            tabBarIcon: ({focused,tintColor}) => (
+                <Ionicons
+                name={`ios-contacts`}
+                size={25}
+                color={tintColor}
+                />
+            )
+        }
+    },
+    Settings: { 
+        screen :SettingsScreen,
+        navigationOptions: {
+            tabBarLabel: "Settings",
+            tabBarIcon: ({focused,tintColor}) => (
+                <Ionicons
+                name={`ios-settings`}
+                size={25}
+                color={tintColor}
+                />
+            )
+        }
+    }
+},{
+    tabBarOptions: {
+        showIcon: true,
+    }
 })
 
 const AppNavigator = createSwitchNavigator({
