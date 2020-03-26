@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     },
     input:{
         minWidth: 100,
-        borderColor: 'black',
+        borderColor: 'lightblue',
         borderWidth: 1,
         marginTop: 20,
         marginHorizontal: 20,
