@@ -2,6 +2,7 @@ import React from 'react'
 import { KeyboardAvoidingView, View, TextInput, StyleSheet, Text} from 'react-native'
 import { Button, colors } from 'react-native-elements'
 import Constants from 'expo-constants'
+import { login } from '../api'
 
 export default class LoginScreen extends React.Component {
     state = {
@@ -20,26 +21,12 @@ export default class LoginScreen extends React.Component {
 
     _login = async () => {
         try{
-            const response = await fetch(`http://192.168.43.241:8000`,
-            {
-                method: 'POST',
-                headers: {'content-type': 'application/json'},
-                body: JSON.stringify({
-                    username: this.state.username,
-                    password:this.state.password
-                })
-            })
-            //console.log(response)
-            if (response.ok) {
-                this.props.navigation.navigate('Main')
-                return
-            }
-
-            const errMessage = await response.text()
+            const success = await login(this.state.username,this.state.password)
+            this.props.navigation.navigate('Main')
+        }catch(error){
+            const errMessage = error.message
             this.setState({err: errMessage})
-    }catch(error){
-        console.error(error)
-    }
+        }
     }
 
     render() {
